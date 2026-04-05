@@ -4,20 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Te Asesoro Laboral | Consultoría</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1B2A4A;
-    --navy-light: #243660;
+    --navy: #1B2E4B;
     --green: #2E7D32;
-    --green-light: #43A047;
-    --green-accent: #66BB6A;
+    --green-light: #4CAF50;
     --gold: #C9A84C;
-    --cream: #F8F5EF;
+    --cream: #F9F6F0;
     --white: #FFFFFF;
-    --gray: #6B7280;
-    --gray-light: #F3F4F6;
-    --border: #E5E7EB;
+    --gray-soft: #F0EDE8;
+    --gray-mid: #8E8E8E;
+    --text-dark: #1A1A2E;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,937 +25,638 @@
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
-    color: var(--navy);
+    color: var(--text-dark);
     overflow-x: hidden;
   }
 
-  /* ── HERO ── */
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(27,46,75,0.97);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 60px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1A3A2A 100%);
+    background: linear-gradient(135deg, var(--navy) 0%, #0F1D2F 60%, #1a3320 100%);
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 24px 60px;
+    display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
-
   .hero::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 70% 50% at 20% 80%, rgba(46,125,50,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,168,76,0.10) 0%, transparent 55%);
+      radial-gradient(ellipse 70% 50% at 80% 50%, rgba(46,125,50,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.07) 0%, transparent 50%);
   }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom right, transparent 49%, var(--cream) 50%);
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
-
-  .geometric-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    animation: fadeUp 1s ease both;
   }
-
-  .geo-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .geo-1 { width: 500px; height: 500px; top: -100px; right: -150px; }
-  .geo-2 { width: 300px; height: 300px; bottom: 100px; left: -80px; }
-  .geo-3 { width: 200px; height: 200px; top: 40%; right: 10%; border-color: rgba(46,125,50,0.15); }
-
-  .hero-logo-wrap {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 28px 40px;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero-logo-wrap img {
-    height: 80px;
-    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--green-accent);
-    margin-bottom: 18px;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.8rem);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s 0.2s ease both;
-    max-width: 780px;
-  }
-
-  .hero-title em {
-    font-style: italic;
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
     color: var(--gold);
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.7;
-    max-width: 560px;
-    margin-bottom: 44px;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s 0.4s ease both;
-    margin-bottom: 48px;
-  }
-
-  .badge {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 100px;
-    padding: 8px 20px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.85);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .badge-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green-accent);
-    flex-shrink: 0;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
-    color: white;
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(46,125,50,0.4);
-  }
-
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(46,125,50,0.5); }
-
-  .btn-ghost {
-    background: transparent;
-    color: rgba(255,255,255,0.8);
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.25);
-    transition: all 0.2s;
-  }
-
-  .btn-ghost:hover { background: rgba(255,255,255,0.07); color: white; }
-
-  /* ── PROPUESTA DE VALOR ── */
-  .value-strip {
-    background: var(--navy);
-    padding: 22px 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    justify-content: center;
-  }
-
-  .value-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 28px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.8);
-    font-size: 0.87rem;
-    font-weight: 500;
-  }
-
-  .value-item:last-child { border-right: none; }
-  .value-icon { font-size: 1.1rem; }
-
-  /* ── SECTION ── */
-  section { padding: 80px 24px; }
-
-  .container { max-width: 1040px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.7rem, 4vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    color: var(--navy);
-  }
-
-  .section-desc {
-    font-size: 1rem;
-    color: var(--gray);
-    line-height: 1.75;
-    max-width: 560px;
-  }
-
-  .section-header { margin-bottom: 52px; }
-
-  /* ── SERVICES ── */
-  .services-section { background: var(--cream); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-  }
-
-  .service-card {
-    background: var(--white);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(27,42,74,0.12);
-  }
-
-  .card-header-img {
-    height: 160px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-header-img svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-  .card-number {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.15);
-    line-height: 1;
-  }
-
-  .card-icon-big {
-    font-size: 3rem;
-    position: relative;
-    z-index: 1;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
-  }
-
-  .card-body { padding: 28px; }
-
-  .card-tag {
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 10px;
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    font-weight: 500;
   }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+  .hero-logo-img {
+    width: 220px;
+    margin: 0 auto 28px;
+    display: block;
+    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    color: var(--white);
     font-weight: 700;
-    color: var(--navy);
-    line-height: 1.3;
-    margin-bottom: 14px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    animation: fadeUp 1s 0.3s ease both;
   }
-
-  .card-desc {
-    font-size: 0.87rem;
-    color: var(--gray);
-    line-height: 1.65;
-    margin-bottom: 20px;
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: var(--green-light);
+    margin-bottom: 24px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    animation: fadeUp 1s 0.4s ease both;
   }
-
-  .service-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .service-items li {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 0.86rem;
-    color: #374151;
-    line-height: 1.5;
+  .hero-desc {
+    max-width: 640px;
+    margin: 0 auto 48px;
+    color: rgba(255,255,255,0.68);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    animation: fadeUp 1s 0.5s ease both;
   }
-
-  .check {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--green), var(--green-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-    font-size: 0.6rem;
-    color: white;
-    font-weight: 700;
+  .hero-cta {
+    display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 1s 0.6s ease both;
   }
-
-  /* ── WHY ── */
-  .why-section {
-    background: linear-gradient(150deg, var(--navy) 0%, #1A3A2A 100%);
-    color: white;
-    position: relative;
-    overflow: hidden;
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green) 0%, #388E3C 100%);
+    color: white; text-decoration: none;
+    padding: 15px 36px; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 24px rgba(46,125,50,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-
-  .why-section::before {
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(46,125,50,0.45); }
+  .btn-outline {
+    border: 1.5px solid rgba(201,168,76,0.6);
+    color: var(--gold); text-decoration: none;
+    padding: 15px 36px; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.35); font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(46,125,50,0.15) 0%, transparent 60%);
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
   }
 
-  .why-section .section-title { color: white; }
-  .why-section .section-desc { color: rgba(255,255,255,0.65); }
-  .why-section .section-label { color: var(--green-accent); }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  @media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; } }
-
-  .why-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 32px;
-    backdrop-filter: blur(10px);
-    transition: background 0.2s;
-  }
-
-  .why-card:hover { background: rgba(255,255,255,0.08); }
-
-  .why-icon {
-    width: 52px; height: 52px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 18px;
-  }
-
-  .why-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 10px;
-  }
-
-  .why-card p {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-  }
-
-  /* ── STATS ── */
-  .stats-bar {
+  /* ─── PROPUESTA ─── */
+  .propuesta {
     background: var(--white);
-    padding: 48px 24px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    padding: 100px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--green); font-weight: 600; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--navy);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .section-title span { color: var(--green); }
+  .propuesta-text p {
+    color: #555; line-height: 1.8; font-size: 1rem; margin-bottom: 16px;
+  }
+  .propuesta-pillars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .pillar {
+    background: var(--gray-soft);
+    border-radius: 12px; padding: 24px 20px;
+    border-left: 3px solid var(--green);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .pillar-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .pillar h4 { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .pillar p { font-size: 0.78rem; color: var(--gray-mid); line-height: 1.5; }
+
+  /* ─── SERVICIOS SECTION ─── */
+  .servicios-wrapper {
+    background: var(--navy);
+    padding: 100px 40px;
+    position: relative; overflow: hidden;
+  }
+  .servicios-wrapper::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(46,125,50,0.12) 0%, transparent 60%);
+    border-radius: 50%;
+  }
+  .servicios-header {
+    text-align: center; margin-bottom: 64px; position: relative; z-index: 2;
+  }
+  .servicios-header .section-label { color: var(--gold); }
+  .servicios-header .section-title { color: var(--white); }
+  .servicios-header .section-title span { color: var(--green-light); }
+  .servicios-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px; max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .servicio-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 36px 28px;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .servicio-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .servicio-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-6px); border-color: rgba(201,168,76,0.25); }
+  .servicio-card:hover::before { transform: scaleX(1); }
+  .servicio-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: rgba(201,168,76,0.15); line-height: 1;
+    position: absolute; top: 16px; right: 24px;
+  }
+  .servicio-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(46,125,50,0.2); border: 1px solid rgba(46,125,50,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 20px;
+  }
+  .servicio-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; color: var(--white); font-weight: 600;
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .servicio-card > p {
+    color: rgba(255,255,255,0.55); font-size: 0.82rem; line-height: 1.65; margin-bottom: 20px;
+  }
+  .servicio-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .servicio-items li {
+    font-size: 0.8rem; color: rgba(255,255,255,0.7); padding-left: 16px;
+    position: relative; line-height: 1.5;
+  }
+  .servicio-items li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--green-light); font-size: 0.72rem;
   }
 
-  .stats-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    text-align: center;
+  /* ─── POR QUÉ ─── */
+  .porq-wrapper {
+    padding: 100px 40px;
+    background: var(--cream);
   }
+  .porq-inner { max-width: 1200px; margin: 0 auto; }
+  .porq-header { text-align: center; margin-bottom: 64px; }
+  .razones-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  .razon {
+    text-align: center; padding: 48px 32px;
+    background: white; border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .razon:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+  .razon-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--green) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 24px; color: white;
+  }
+  .razon h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--navy); font-weight: 700; margin-bottom: 14px;
+  }
+  .razon p { color: #666; font-size: 0.9rem; line-height: 1.7; }
 
-  @media (max-width: 640px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1;
+  /* ─── PROCESO ─── */
+  .proceso-wrapper {
+    background: linear-gradient(135deg, #0F1D2F 0%, var(--navy) 100%);
+    padding: 100px 40px; position: relative; overflow: hidden;
+  }
+  .proceso-inner { max-width: 900px; margin: 0 auto; }
+  .proceso-header { text-align: center; margin-bottom: 64px; }
+  .proceso-header .section-title { color: white; }
+  .proceso-steps {
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .proceso-steps::before {
+    content: '';
+    position: absolute; left: 28px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green), var(--gold), transparent);
+  }
+  .paso {
+    display: flex; gap: 32px; align-items: flex-start;
+    padding: 32px 0; position: relative;
+  }
+  .paso-num {
+    width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+    background: var(--navy); border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--gold);
+    position: relative; z-index: 2;
+  }
+  .paso-content h4 {
+    font-size: 1rem; font-weight: 600; color: white;
     margin-bottom: 8px;
   }
+  .paso-content p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.65; }
 
-  .stat-label {
-    font-size: 0.83rem;
-    color: var(--gray);
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  /* ── CONTACT ── */
-  .contact-section { background: var(--cream); }
-
-  .contact-inner {
+  /* ─── CONTACTO ─── */
+  .contacto-wrapper {
+    padding: 100px 40px;
     background: var(--white);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
   }
-
-  @media (max-width: 680px) { .contact-inner { grid-template-columns: 1fr; } }
-
-  .contact-left {
-    background: linear-gradient(150deg, var(--navy) 0%, #1A3A2A 100%);
-    padding: 52px 44px;
-    color: white;
-    position: relative;
-    overflow: hidden;
+  .contacto-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .contacto-inner .section-title { margin-bottom: 16px; }
+  .contacto-inner > p { color: #666; font-size: 1rem; line-height: 1.75; margin-bottom: 48px; }
+  .contacto-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px;
   }
-
-  .contact-left::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(46,125,50,0.25) 0%, transparent 55%);
-  }
-
-  .contact-left-content { position: relative; z-index: 1; }
-
-  .contact-left h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 14px;
-    line-height: 1.2;
-  }
-
-  .contact-left p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    margin-bottom: 36px;
-  }
-
-  .contact-item {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    margin-bottom: 22px;
-  }
-
-  .contact-icon-wrap {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .contact-detail span {
+  .contacto-card {
+    background: var(--gray-soft);
+    border-radius: 12px; padding: 28px 20px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    text-decoration: none; color: inherit;
     display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--green-accent);
-    margin-bottom: 3px;
   }
-
-  .contact-detail a, .contact-detail p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-    line-height: 1.4;
-    margin: 0;
+  .contacto-card:hover { transform: translateY(-4px); }
+  .contacto-card .icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .contacto-card .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-mid); margin-bottom: 6px; }
+  .contacto-card .value { font-size: 0.88rem; color: var(--navy); font-weight: 600; word-break: break-all; }
+  .contacto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; color: var(--navy); font-weight: 700; margin-bottom: 6px;
   }
+  .contacto-role { color: var(--green); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; }
 
-  .contact-detail a:hover { color: white; }
-
-  .contact-right {
-    padding: 52px 44px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .contact-right h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-
-  .contact-right p {
-    font-size: 0.88rem;
-    color: var(--gray);
-    margin-bottom: 32px;
-    line-height: 1.65;
-  }
-
-  .cta-links { display: flex; flex-direction: column; gap: 14px; }
-
-  .cta-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    text-decoration: none;
-    transition: all 0.2s;
-    background: var(--gray-light);
-  }
-
-  .cta-link:hover { background: var(--white); border-color: var(--green); box-shadow: 0 4px 16px rgba(46,125,50,0.1); }
-
-  .cta-link-icon {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-
-  .cta-link-text span {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--gray);
-    margin-bottom: 2px;
-  }
-
-  .cta-link-text strong {
-    font-size: 0.9rem;
-    color: var(--navy);
-    font-weight: 600;
-  }
-
-  /* ── FOOTER ── */
+  /* ─── FOOTER ─── */
   footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 28px 24px;
-    font-size: 0.82rem;
+    background: #0A1520;
+    padding: 40px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
   }
+  footer .brand {
+    font-family: 'Cormorant Garamond', serif;
+    color: rgba(255,255,255,0.7); font-size: 1rem;
+  }
+  footer .brand span { color: var(--gold); }
+  footer p { color: rgba(255,255,255,0.3); font-size: 0.78rem; }
 
-  footer strong { color: rgba(255,255,255,0.8); }
+  /* ─── DIVIDER ─── */
+  .section-outer { padding: 0; }
+  .ornament {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .ornament::before, .ornament::after {
+    content: ''; flex: 1; max-width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .ornament::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .ornament span { color: var(--gold); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; }
 
-  /* ── ANIMATIONS ── */
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .propuesta { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+    .razones-grid { grid-template-columns: 1fr; }
+    .contacto-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 32px 24px; }
   }
 
-  .reveal.visible { opacity: 1; transform: none; }
+  /* Fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">Te <span>Asesoro</span> Laboral · Consultoría</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#porq">¿Por qué?</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
-  <div class="geometric-bg">
-    <div class="geo-circle geo-1"></div>
-    <div class="geo-circle geo-2"></div>
-    <div class="geo-circle geo-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Consultoría Laboral · Cali, Colombia</div>
+    <img class="hero-logo-img" src="/mnt/user-data/uploads/Logo_Teasesorolaboral.png" alt="Te Asesoro Laboral Logo">
+    <h1>Te <em>Asesoro</em><br>Laboral</h1>
+    <div class="hero-sub">Consultoría | Soluciones Operativas & Documentales</div>
+    <p class="hero-desc">Ayudamos a las Pymes a optimizar sus procesos de talento humano, blindarse legalmente y recuperar dinero perdido en burocracia — sin los costos fijos de un departamento interno.</p>
+    <div class="hero-cta">
+      <a href="#servicios" class="btn-primary">Ver Servicios</a>
+      <a href="#contacto" class="btn-outline">Agendar Consulta</a>
+    </div>
   </div>
-
-  <div class="hero-logo-wrap">
-    <!-- Logo reconstruido con SVG para máxima calidad -->
-    <svg width="260" height="72" viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Engranaje -->
-      <g transform="translate(4,6)">
-        <circle cx="30" cy="30" r="18" fill="none" stroke="#2E7D32" stroke-width="3.5"/>
-        <circle cx="30" cy="30" r="10" fill="none" stroke="#2E7D32" stroke-width="2.5"/>
-        <!-- dientes engranaje -->
-        <rect x="27.5" y="8" width="5" height="7" rx="1.5" fill="#2E7D32"/>
-        <rect x="27.5" y="45" width="5" height="7" rx="1.5" fill="#2E7D32"/>
-        <rect x="8" y="27.5" width="7" height="5" rx="1.5" fill="#2E7D32"/>
-        <rect x="45" y="27.5" width="7" height="5" rx="1.5" fill="#2E7D32"/>
-        <rect x="14.1" y="14.1" width="7" height="5" rx="1.5" fill="#2E7D32" transform="rotate(45 17.6 16.6)"/>
-        <rect x="39.9" y="39.9" width="7" height="5" rx="1.5" fill="#2E7D32" transform="rotate(45 43.4 42.4)"/>
-        <rect x="39.9" y="14.1" width="5" height="7" rx="1.5" fill="#2E7D32" transform="rotate(-45 42.4 17.6)"/>
-        <rect x="14.1" y="39.9" width="5" height="7" rx="1.5" fill="#2E7D32" transform="rotate(-45 16.6 43.4)"/>
-        <!-- arco azul -->
-        <path d="M 8 46 A 28 28 0 0 1 8 14" stroke="#1B2A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- siluetas personas -->
-        <circle cx="22" cy="24" r="4" fill="#1B2A4A"/>
-        <path d="M16 36 Q22 30 28 36" stroke="#1B2A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <circle cx="30" cy="21" r="3.5" fill="#2E7D32"/>
-        <path d="M25 34 Q30 27 35 34" stroke="#2E7D32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <circle cx="38" cy="24" r="3" fill="#1B2A4A" opacity="0.7"/>
-      </g>
-      <!-- Texto -->
-      <text x="76" y="30" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#2E7D32">Te Asesoro</text>
-      <text x="76" y="52" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#1B2A4A">Laboral</text>
-      <text x="78" y="67" font-family="Arial, sans-serif" font-size="9" font-weight="600" fill="#6B7280" letter-spacing="3">CONSULTORÍA</text>
-      <!-- línea decorativa -->
-      <line x1="76" y1="56" x2="220" y2="56" stroke="#6B7280" stroke-width="0.8"/>
-    </svg>
-  </div>
-
-  <p class="hero-eyebrow">Portafolio de Servicios</p>
-
-  <h1 class="hero-title">
-    Talento Humano <em>experto</em>,<br>sin los costos fijos de un área interna
-  </h1>
-
-  <p class="hero-sub">
-    Soluciones operativas, laborales y documentales para Pymes colombianas. Optimizamos sus procesos de talento humano, los blindamos legalmente y recuperamos dinero perdido en burocracia.
-  </p>
-
-  <div class="hero-badges">
-    <div class="badge"><div class="badge-dot"></div> +25 años de experiencia</div>
-    <div class="badge"><div class="badge-dot"></div> 100% Virtual y Remoto</div>
-    <div class="badge"><div class="badge-dot"></div> Sin contratos largos</div>
-    <div class="badge"><div class="badge-dot"></div> Cali, Colombia</div>
-  </div>
-
-  <div class="hero-cta">
-    <a href="https://wa.me/573246813075" class="btn-primary">
-      <span>💬</span> Solicitar Asesoría
-    </a>
-    <a href="/cdn-cgi/l/email-protection#6d01181705080108030c0e0c0908030c0e0c0908030c2d0a000c0401430e0200" class="btn-ghost">Enviar Correo</a>
-  </div>
+  <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- VALUE STRIP -->
-<div class="value-strip">
-  <div class="value-item"><span class="value-icon">⚡</span> Resultados desde la primera sesión</div>
-  <div class="value-item"><span class="value-icon">🛡️</span> Blindaje legal documentado</div>
-  <div class="value-item"><span class="value-icon">💰</span> Tarifas competitivas sin IVA</div>
-  <div class="value-item"><span class="value-icon">📂</span> Entregables digitales listos</div>
-</div>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="reveal">
-      <div class="stat-num">25+</div>
-      <div class="stat-label">Años de experiencia en<br>RR.HH. y gestión organizacional</div>
+<!-- PROPUESTA DE VALOR -->
+<section style="background:white; padding: 80px 40px 0;">
+  <div class="propuesta reveal">
+    <div class="propuesta-text">
+      <div class="section-label">Propuesta de Valor</div>
+      <h2 class="section-title">La experiencia de un área de RRHH,<br><span>sin los costos fijos</span></h2>
+      <p>Somos tu aliado estratégico externo: resolvemos los temas laborales, documentales y de SST para que tú te concentres en hacer crecer tu negocio.</p>
+      <p>Operamos de forma 100% remota, entregando resultados medibles, documentos digitales y soluciones ágiles desde el primer día.</p>
     </div>
-    <div class="reveal">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Líneas de servicio<br>especializadas</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Costos fijos o de<br>nómina para su empresa</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Operación remota y<br>digital</div>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section class="services-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="section-label">Portafolio de Servicios</p>
-      <h2 class="section-title">Cuatro líneas de servicio<br>para blindar su empresa</h2>
-      <p class="section-desc">Cada servicio está diseñado para resolver un problema real de las Pymes colombianas: liquidez, cumplimiento legal, orden interno y protección normativa.</p>
-    </div>
-
-    <div class="services-grid">
-
-      <!-- Servicio 1 -->
-      <div class="service-card reveal">
-        <div class="card-header-img" style="background: linear-gradient(135deg, #1B4F72 0%, #2E7D32 100%);">
-          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice">
-            <circle cx="350" cy="20" r="80" fill="rgba(255,255,255,0.04)"/>
-            <circle cx="50" cy="140" r="60" fill="rgba(255,255,255,0.04)"/>
-            <path d="M 0 100 Q 100 60 200 80 Q 300 100 400 70 L 400 160 L 0 160 Z" fill="rgba(0,0,0,0.15)"/>
-          </svg>
-          <div class="card-number">01</div>
-          <div class="card-icon-big">💵</div>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">Nómina & Seguridad Social</p>
-          <h3 class="card-title">Gestión Integral de Nómina y Seguridad Social</h3>
-          <p class="card-desc">Liquidación exacta y recuperación de dinero ante el sistema de salud. Su empresa no pierde ni un peso por incapacidades no cobradas.</p>
-          <ul class="service-items">
-            <li><div class="check">✓</div><span><strong>Gestión y Recobro de Incapacidades</strong> — Trámite y recuperación de cartera ante EPS y ARL</span></li>
-            <li><div class="check">✓</div><span><strong>Liquidación de Nómina y PILA</strong> — Cálculo preciso de salarios, horas extras y aportes</span></li>
-            <li><div class="check">✓</div><span><strong>Liquidaciones Laborales</strong> — Prestaciones sociales apegadas a la ley</span></li>
-            <li><div class="check">✓</div><span><strong>Enlace Corporativo de Salud</strong> — Agilización de citas para empleados clave</span></li>
-          </ul>
-        </div>
+    <div class="propuesta-pillars reveal">
+      <div class="pillar">
+        <div class="pillar-icon">💰</div>
+        <h4>Cero Costos Fijos</h4>
+        <p>Pagas estrictamente por resultados y servicios ejecutados.</p>
       </div>
-
-      <!-- Servicio 2 -->
-      <div class="service-card reveal">
-        <div class="card-header-img" style="background: linear-gradient(135deg, #4A1942 0%, #1B2A4A 100%);">
-          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice">
-            <rect x="300" y="-20" width="120" height="120" rx="20" fill="rgba(255,255,255,0.04)" transform="rotate(25 360 40)"/>
-            <circle cx="80" cy="130" r="70" fill="rgba(255,255,255,0.04)"/>
-          </svg>
-          <div class="card-number">02</div>
-          <div class="card-icon-big">🛡️</div>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">100% Virtual</p>
-          <h3 class="card-title">Auditoría y Blindaje Laboral</h3>
-          <p class="card-desc">Revisión preventiva y estructuración legal para evitar demandas, tutelas y sanciones del Ministerio de Trabajo.</p>
-          <ul class="service-items">
-            <li><div class="check">✓</div><span><strong>Reglamento Interno de Trabajo</strong> — Alineado a la normatividad vigente</span></li>
-            <li><div class="check">✓</div><span><strong>Procesos Disciplinarios</strong> — Descargos, actas y cartas con debido proceso</span></li>
-            <li><div class="check">✓</div><span><strong>Revisión de Contratos Laborales</strong> — Auditoría digital de cumplimiento</span></li>
-            <li><div class="check">✓</div><span><strong>Auditoría de Afiliaciones</strong> — Verificación de correcta cotización</span></li>
-          </ul>
-        </div>
+      <div class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <h4>Eficiencia Remota</h4>
+        <p>Sin interrumpir tu operación ni ocupar espacio físico.</p>
       </div>
-
-      <!-- Servicio 3 -->
-      <div class="service-card reveal">
-        <div class="card-header-img" style="background: linear-gradient(135deg, #1A5276 0%, #148F77 100%);">
-          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice">
-            <ellipse cx="200" cy="80" rx="250" ry="60" fill="rgba(255,255,255,0.04)"/>
-            <path d="M 0 50 Q 200 130 400 50 L 400 160 L 0 160 Z" fill="rgba(0,0,0,0.12)"/>
-          </svg>
-          <div class="card-number">03</div>
-          <div class="card-icon-big">🏗️</div>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">Talento Humano</p>
-          <h3 class="card-title">Estructuración Organizacional y Talento Humano</h3>
-          <p class="card-desc">Orden interno para que la empresa funcione de forma autónoma, sin reprocesos ni caos operativo.</p>
-          <ul class="service-items">
-            <li><div class="check">✓</div><span><strong>Manuales de Funciones</strong> — Perfiles de cargo claros para cada rol</span></li>
-            <li><div class="check">✓</div><span><strong>Reclutamiento y Selección Efectiva</strong> — Entrevistas por competencias y entrega de terna ideal</span></li>
-          </ul>
-        </div>
+      <div class="pillar">
+        <div class="pillar-icon">🛡️</div>
+        <h4>Blindaje Legal</h4>
+        <p>Estructuras documentales que protegen contra tutelas y demandas.</p>
       </div>
-
-      <!-- Servicio 4 -->
-      <div class="service-card reveal">
-        <div class="card-header-img" style="background: linear-gradient(135deg, #1B5E20 0%, #0D47A1 100%);">
-          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice">
-            <circle cx="320" cy="30" r="100" fill="rgba(255,255,255,0.04)"/>
-            <circle cx="80" cy="160" r="80" fill="rgba(255,255,255,0.05)"/>
-          </svg>
-          <div class="card-number">04</div>
-          <div class="card-icon-big">📋</div>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">SG-SST & Documental</p>
-          <h3 class="card-title">Consultoría en SG-SST y Organización Documental</h3>
-          <p class="card-desc">Cumplimiento normativo y digitalización ágil sin inversiones millonarias. Todo en la nube, estructurado y seguro.</p>
-          <ul class="service-items">
-            <li><div class="check">✓</div><span><strong>Diseño Documental del SG-SST</strong> — Estándares mínimos exigidos por el Ministerio de Trabajo</span></li>
-            <li><div class="check">✓</div><span><strong>Protocolo de Digitalización</strong> — Migración de archivo físico a la nube de forma estructurada</span></li>
-          </ul>
-        </div>
+      <div class="pillar">
+        <div class="pillar-icon">📄</div>
+        <h4>Facturación Simple</h4>
+        <p>Régimen No Responsable de IVA — tarifas competitivas.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- WHY -->
-<section class="why-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="section-label">Propuesta de Valor</p>
-      <h2 class="section-title" style="color:white;">¿Por qué elegir<br>Te Asesoro Laboral?</h2>
-      <p class="section-desc">La experiencia de una Directora Administrativa senior, sin los costos de contratarla de planta.</p>
+<!-- SERVICIOS -->
+<section id="servicios" class="servicios-wrapper">
+  <div class="servicios-header reveal">
+    <div class="section-label">Portafolio Completo</div>
+    <div class="ornament"><span>✦</span></div>
+    <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+  </div>
+
+  <div class="servicios-grid">
+
+    <!-- 1 -->
+    <div class="servicio-card reveal">
+      <div class="servicio-num">01</div>
+      <div class="servicio-icon">🏦</div>
+      <h3>Gestión Integral de Nómina y Seguridad Social</h3>
+      <p>Liquidación exacta y recuperación de dinero ante el sistema de salud.</p>
+      <ul class="servicio-items">
+        <li><strong>Recobro de Incapacidades:</strong> Trámite y seguimiento ante EPS y ARL para proteger su liquidez.</li>
+        <li><strong>Liquidación de Nómina y PILA:</strong> Cálculo preciso de salarios, horas extras y recargos.</li>
+        <li><strong>Liquidaciones Laborales:</strong> Prestaciones sociales apegadas a la ley.</li>
+        <li><strong>Enlace Corporativo de Salud:</strong> Agilización de citas y trámites EPS para empleados clave.</li>
+      </ul>
     </div>
 
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-icon">💡</div>
+    <!-- 2 -->
+    <div class="servicio-card reveal">
+      <div class="servicio-num">02</div>
+      <div class="servicio-icon">⚖️</div>
+      <h3>Auditoría y Blindaje Laboral</h3>
+      <p>Revisión preventiva y estructuración legal para evitar demandas y sanciones. Modalidad 100% Virtual.</p>
+      <ul class="servicio-items">
+        <li><strong>Reglamento Interno de Trabajo:</strong> Diseño alineado a la normatividad vigente.</li>
+        <li><strong>Procesos Disciplinarios:</strong> Descargos y cartas de terminación con debido proceso.</li>
+        <li><strong>Revisión de Contratos:</strong> Auditoría digital que protege los intereses de la empresa.</li>
+        <li><strong>Auditoría de Afiliaciones:</strong> Verificación de correcta afiliación y cotización.</li>
+      </ul>
+    </div>
+
+    <!-- 3 -->
+    <div class="servicio-card reveal">
+      <div class="servicio-num">03</div>
+      <div class="servicio-icon">🏢</div>
+      <h3>Estructuración Organizacional y Talento Humano</h3>
+      <p>Orden interno para que la empresa funcione de forma autónoma y sin reprocesos.</p>
+      <ul class="servicio-items">
+        <li><strong>Manuales de Funciones:</strong> Perfiles de cargo claros que eliminan el caos operativo.</li>
+        <li><strong>Reclutamiento y Selección:</strong> Entrevistas por competencias y pruebas para entregar la terna ideal.</li>
+      </ul>
+    </div>
+
+    <!-- 4 -->
+    <div class="servicio-card reveal">
+      <div class="servicio-num">04</div>
+      <div class="servicio-icon">📋</div>
+      <h3>Consultoría en SG-SST y Organización Documental</h3>
+      <p>Cumplimiento normativo y digitalización ágil sin inversiones millonarias.</p>
+      <ul class="servicio-items">
+        <li><strong>Diseño Documental SG-SST:</strong> Estándares mínimos exigidos por el Ministerio de Trabajo.</li>
+        <li><strong>Digitalización de Archivo:</strong> Plan de migración del archivo laboral a la nube de forma segura y estructurada.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section id="porq" class="porq-wrapper">
+  <div class="porq-inner">
+    <div class="porq-header reveal">
+      <div class="section-label">Diferenciadores</div>
+      <div class="ornament"><span>✦</span></div>
+      <h2 class="section-title">¿Por qué trabajar con<br><span>Te Asesoro Laboral?</span></h2>
+    </div>
+    <div class="razones-grid">
+      <div class="razon reveal">
+        <div class="razon-icon">💼</div>
         <h3>Cero Costos Fijos</h3>
-        <p>Obtienes la experiencia de una Directora Administrativa sin asumir salarios, prestaciones ni dotación. Pagas estrictamente por resultados y servicios ejecutados.</p>
+        <p>Obtienes la experiencia de una Directora Administrativa con más de 25 años en RRHH sin asumir el pago de salarios, prestaciones ni dotación. Pagas estrictamente por resultados.</p>
       </div>
-      <div class="why-card reveal">
-        <div class="why-icon">⚡</div>
+      <div class="razon reveal">
+        <div class="razon-icon">🚀</div>
         <h3>Eficiencia Operativa Remota</h3>
         <p>Operamos externamente, entregando soluciones rápidas y documentos digitales sin interrumpir el día a día ni ocupar espacio físico en tu negocio.</p>
       </div>
-      <div class="why-card reveal">
-        <div class="why-icon">📄</div>
+      <div class="razon reveal">
+        <div class="razon-icon">📊</div>
         <h3>Facturación Simplificada</h3>
-        <p>Operación legal como Persona Natural (Régimen No Responsable de IVA), con tarifas altamente competitivas que favorecen tu flujo de caja.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon">🏆</div>
-        <h3>+25 Años de Trayectoria</h3>
-        <p>Amplia experiencia en empresas de múltiples industrias en Colombia: manufactura, servicios, comercio y educación. Conocemos las realidades del tejido empresarial Pyme.</p>
+        <p>Operación legal como Persona Natural, Régimen No Responsable de IVA — tarifas altamente competitivas que favorecen directamente tu flujo de caja.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact-section">
-  <div class="container">
-    <div class="section-header reveal" style="text-align:center; margin-bottom: 44px;">
-      <p class="section-label">Hablemos</p>
-      <h2 class="section-title" style="max-width:100%;">¿Lista para optimizar su empresa?</h2>
+<!-- PROCESO DE TRABAJO -->
+<section id="proceso" class="proceso-wrapper">
+  <div class="proceso-inner">
+    <div class="proceso-header reveal">
+      <div class="section-label" style="color: var(--gold)">¿Cómo trabajamos?</div>
+      <div class="ornament" style="--gold:#C9A84C"><span style="color:var(--gold)">✦</span></div>
+      <h2 class="section-title">Proceso de <span style="color: var(--green-light)">Consultoría</span></h2>
     </div>
-    <div class="contact-inner reveal">
-      <div class="contact-left">
-        <div class="contact-left-content">
-          <h2>Luz Helena Cadena</h2>
-          <p>Administradora de Empresas • Especialista en Gerencia de SST<br>Directora de Consultoría</p>
-
-          <div class="contact-item">
-            <div class="contact-icon-wrap">📱</div>
-            <div class="contact-detail">
-              <span>WhatsApp / Llamada</span>
-              <a href="https://wa.me/573246813075">+57 324 681 3075</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon-wrap">✉️</div>
-            <div class="contact-detail">
-              <span>Correo Electrónico</span>
-              <a href="/cdn-cgi/l/email-protection#98f4ede2f0fdf4fdf6f9fbf9fcfdf6f9fbf9fcfdf6f9d8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="7d11080715181118131c1e1c1918131c1e1c1918131c3d1a101c1411531e1210">[email&#160;protected]</span></a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon-wrap">💼</div>
-            <div class="contact-detail">
-              <span>LinkedIn</span>
-              <a href="https://www.linkedin.com/in/luz-helena-cadena-cadena">Ver perfil profesional</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon-wrap">📍</div>
-            <div class="contact-detail">
-              <span>Ubicación</span>
-              <p>Cali, Valle del Cauca — Colombia<br><em style="font-size:0.8rem; opacity:0.6;">Atención 100% remota a nivel nacional</em></p>
-            </div>
-          </div>
+    <div class="proceso-steps">
+      <div class="paso reveal">
+        <div class="paso-num">1</div>
+        <div class="paso-content">
+          <h4>Diagnóstico Inicial Gratuito</h4>
+          <p>Reunión virtual de 30 minutos para entender la situación actual de tu empresa en temas laborales, nómina y SST. Sin compromiso.</p>
         </div>
       </div>
-
-      <div class="contact-right">
-        <h3>Contáctame directamente</h3>
-        <p>Elija el canal de su preferencia para agendar una consulta inicial sin costo. Resolvemos su consulta en menos de 24 horas.</p>
-        <div class="cta-links">
-          <a href="https://wa.me/573246813075?text=Hola%20Luz%20Helena%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Te%20Asesoro%20Laboral" class="cta-link">
-            <div class="cta-link-icon" style="background:#DCF8C6;">💬</div>
-            <div class="cta-link-text">
-              <span>Más rápido</span>
-              <strong>Escribir por WhatsApp</strong>
-            </div>
-          </a>
-          <a href="/cdn-cgi/l/email-protection#38544d42505d545d56595b595c5d56595b595c5d5659785f55595154165b5755074b4d5a525d5b4c057b57564b4d544c591d0a08151d0a086c5d1d0a08794b5d4b574a571d0a0874595a574a5954" class="cta-link">
-            <div class="cta-link-icon" style="background:#FDE8D8;">📧</div>
-            <div class="cta-link-text">
-              <span>Formal</span>
-              <strong>Enviar correo electrónico</strong>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/luz-helena-cadena-cadena" class="cta-link">
-            <div class="cta-link-icon" style="background:#DBEAFE;">💼</div>
-            <div class="cta-link-text">
-              <span>Perfil profesional</span>
-              <strong>Conectar en LinkedIn</strong>
-            </div>
-          </a>
+      <div class="paso reveal">
+        <div class="paso-num">2</div>
+        <div class="paso-content">
+          <h4>Propuesta Personalizada</h4>
+          <p>Diseño de un plan de trabajo con alcance, entregables, tiempos y tarifas claras. Tú decides qué servicios activar según tus prioridades.</p>
         </div>
       </div>
+      <div class="paso reveal">
+        <div class="paso-num">3</div>
+        <div class="paso-content">
+          <h4>Ejecución y Entrega</h4>
+          <p>Trabajamos de forma remota con canales ágiles de comunicación. Cada entregable llega en formato digital, listo para usar y archivar.</p>
+        </div>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">4</div>
+        <div class="paso-content">
+          <h4>Seguimiento Continuo</h4>
+          <p>Disponibilidad para ajustes, actualizaciones normativas y consultas adicionales. Somos tu aliado a largo plazo, no un servicio puntual.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contacto-wrapper">
+  <div class="contacto-inner">
+    <div class="reveal">
+      <div class="section-label">Hablemos</div>
+      <div class="ornament"><span>✦</span></div>
+      <h2 class="section-title">¿Listo para <span>optimizar</span><br>tu gestión laboral?</h2>
+      <p>Agenda una consulta inicial sin costo. Analizamos juntos el estado actual de tu empresa y te mostramos el camino más eficiente.</p>
+    </div>
+    <div class="contacto-cards reveal">
+      <a class="contacto-card" href="tel:3246813075">
+        <div class="icon">📱</div>
+        <div class="label">Teléfono / WhatsApp</div>
+        <div class="value">324 681 3075</div>
+      </a>
+      <a class="contacto-card" href="/cdn-cgi/l/email-protection#630f16190b060f060d02000207060d02000207060d0223040e020a0f4d000c0e">
+        <div class="icon">✉️</div>
+        <div class="label">Correo Electrónico</div>
+        <div class="value"><span class="__cf_email__" data-cfemail="94f8e1eefcf1f8f1faf5f7f5f0f1faf5f7f5f0f1faf5d4f3f9f5fdf8baf7fbf9">[email&#160;protected]</span></div>
+      </a>
+      <a class="contacto-card" href="https://www.linkedin.com/in/luz-helena-cadena-cadena" target="_blank">
+        <div class="icon">💼</div>
+        <div class="label">LinkedIn</div>
+        <div class="value">Luz Helena Cadena Cadena</div>
+      </a>
+    </div>
+    <div class="reveal">
+      <div class="contacto-name">Luz Helena Cadena Cadena</div>
+      <div class="contacto-role">Directora de Consultoría · Administradora de Empresas · Esp. en SST</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <strong>Te Asesoro Laboral | Consultoría</strong> &nbsp;·&nbsp; Luz Helena Cadena Cadena<br>
-  <span style="font-size:0.78rem; margin-top:6px; display:block;">Persona Natural · Régimen No Responsable de IVA · Cali, Colombia · 2025</span>
+  <div class="brand">Te <span>Asesoro</span> Laboral · Consultoría</div>
+  <p>Cali, Colombia · 2025 · Persona Natural — Régimen No Responsable de IVA</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflar
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Reveal on scroll
+  const obser
